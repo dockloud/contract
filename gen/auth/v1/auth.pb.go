@@ -9,6 +9,7 @@ package v1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -196,8 +197,8 @@ func (x *LoginRequest) GetPassword() string {
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	JwtToken      string                 `protobuf:"bytes,2,opt,name=jwt_token,json=jwtToken,proto3" json:"jwt_token,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -239,18 +240,18 @@ func (x *LoginResponse) GetUid() string {
 	return ""
 }
 
-func (x *LoginResponse) GetUsername() string {
+func (x *LoginResponse) GetJwtToken() string {
 	if x != nil {
-		return x.Username
+		return x.JwtToken
 	}
 	return ""
 }
 
-func (x *LoginResponse) GetEmail() string {
+func (x *LoginResponse) GetExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.Email
+		return x.ExpiresAt
 	}
-	return ""
+	return nil
 }
 
 type UpdateRequest struct {
@@ -441,7 +442,7 @@ var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x12auth/v1/auth.proto\x12\aauth.v1\"_\n" +
+	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"_\n" +
 	"\x0fRegisterRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
@@ -452,11 +453,12 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x05email\x18\x03 \x01(\tR\x05email\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"S\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"y\n" +
 	"\rLoginResponse\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\"\xa2\x01\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1b\n" +
+	"\tjwt_token\x18\x02 \x01(\tR\bjwtToken\x129\n" +
+	"\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xa2\x01\n" +
 	"\rUpdateRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1f\n" +
 	"\busername\x18\x02 \x01(\tH\x00R\busername\x88\x01\x01\x12\x19\n" +
@@ -489,29 +491,31 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 
 var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_auth_v1_auth_proto_goTypes = []any{
-	(*RegisterRequest)(nil),  // 0: auth.v1.RegisterRequest
-	(*RegisterResponse)(nil), // 1: auth.v1.RegisterResponse
-	(*LoginRequest)(nil),     // 2: auth.v1.LoginRequest
-	(*LoginResponse)(nil),    // 3: auth.v1.LoginResponse
-	(*UpdateRequest)(nil),    // 4: auth.v1.UpdateRequest
-	(*UpdateResponse)(nil),   // 5: auth.v1.UpdateResponse
-	(*DeleteRequest)(nil),    // 6: auth.v1.DeleteRequest
-	(*DeleteResponse)(nil),   // 7: auth.v1.DeleteResponse
+	(*RegisterRequest)(nil),       // 0: auth.v1.RegisterRequest
+	(*RegisterResponse)(nil),      // 1: auth.v1.RegisterResponse
+	(*LoginRequest)(nil),          // 2: auth.v1.LoginRequest
+	(*LoginResponse)(nil),         // 3: auth.v1.LoginResponse
+	(*UpdateRequest)(nil),         // 4: auth.v1.UpdateRequest
+	(*UpdateResponse)(nil),        // 5: auth.v1.UpdateResponse
+	(*DeleteRequest)(nil),         // 6: auth.v1.DeleteRequest
+	(*DeleteResponse)(nil),        // 7: auth.v1.DeleteResponse
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	0, // 0: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
-	2, // 1: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	4, // 2: auth.v1.AuthService.Update:input_type -> auth.v1.UpdateRequest
-	6, // 3: auth.v1.AuthService.Delete:input_type -> auth.v1.DeleteRequest
-	1, // 4: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	3, // 5: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
-	5, // 6: auth.v1.AuthService.Update:output_type -> auth.v1.UpdateResponse
-	7, // 7: auth.v1.AuthService.Delete:output_type -> auth.v1.DeleteResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	8, // 0: auth.v1.LoginResponse.expires_at:type_name -> google.protobuf.Timestamp
+	0, // 1: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
+	2, // 2: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
+	4, // 3: auth.v1.AuthService.Update:input_type -> auth.v1.UpdateRequest
+	6, // 4: auth.v1.AuthService.Delete:input_type -> auth.v1.DeleteRequest
+	1, // 5: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
+	3, // 6: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
+	5, // 7: auth.v1.AuthService.Update:output_type -> auth.v1.UpdateResponse
+	7, // 8: auth.v1.AuthService.Delete:output_type -> auth.v1.DeleteResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_auth_proto_init() }
