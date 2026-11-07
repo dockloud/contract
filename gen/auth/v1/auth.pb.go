@@ -254,7 +254,7 @@ func (x *LoginResponse) GetExpiresAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type UpdateRequest struct {
+type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	Username      *string                `protobuf:"bytes,2,opt,name=username,proto3,oneof" json:"username,omitempty"`
@@ -264,20 +264,20 @@ type UpdateRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateRequest) Reset() {
-	*x = UpdateRequest{}
+func (x *UpdateUserRequest) Reset() {
+	*x = UpdateUserRequest{}
 	mi := &file_auth_v1_auth_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateRequest) String() string {
+func (x *UpdateUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateRequest) ProtoMessage() {}
+func (*UpdateUserRequest) ProtoMessage() {}
 
-func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_v1_auth_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -289,59 +289,59 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
-func (*UpdateRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateUserRequest.ProtoReflect.Descriptor instead.
+func (*UpdateUserRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *UpdateRequest) GetUid() string {
+func (x *UpdateUserRequest) GetUid() string {
 	if x != nil {
 		return x.Uid
 	}
 	return ""
 }
 
-func (x *UpdateRequest) GetUsername() string {
+func (x *UpdateUserRequest) GetUsername() string {
 	if x != nil && x.Username != nil {
 		return *x.Username
 	}
 	return ""
 }
 
-func (x *UpdateRequest) GetEmail() string {
+func (x *UpdateUserRequest) GetEmail() string {
 	if x != nil && x.Email != nil {
 		return *x.Email
 	}
 	return ""
 }
 
-func (x *UpdateRequest) GetPassword() string {
+func (x *UpdateUserRequest) GetPassword() string {
 	if x != nil && x.Password != nil {
 		return *x.Password
 	}
 	return ""
 }
 
-type UpdateResponse struct {
+type UpdateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateResponse) Reset() {
-	*x = UpdateResponse{}
+func (x *UpdateUserResponse) Reset() {
+	*x = UpdateUserResponse{}
 	mi := &file_auth_v1_auth_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateResponse) String() string {
+func (x *UpdateUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateResponse) ProtoMessage() {}
+func (*UpdateUserResponse) ProtoMessage() {}
 
-func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdateUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_v1_auth_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -353,32 +353,32 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
-func (*UpdateResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateUserResponse.ProtoReflect.Descriptor instead.
+func (*UpdateUserResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{5}
 }
 
-type DeleteRequest struct {
+type DeleteUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteRequest) Reset() {
-	*x = DeleteRequest{}
+func (x *DeleteUserRequest) Reset() {
+	*x = DeleteUserRequest{}
 	mi := &file_auth_v1_auth_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteRequest) String() string {
+func (x *DeleteUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRequest) ProtoMessage() {}
+func (*DeleteUserRequest) ProtoMessage() {}
 
-func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
+func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_v1_auth_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -390,38 +390,38 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteUserRequest.ProtoReflect.Descriptor instead.
+func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteRequest) GetUid() string {
+func (x *DeleteUserRequest) GetUid() string {
 	if x != nil {
 		return x.Uid
 	}
 	return ""
 }
 
-type DeleteResponse struct {
+type DeleteUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteResponse) Reset() {
-	*x = DeleteResponse{}
+func (x *DeleteUserResponse) Reset() {
+	*x = DeleteUserResponse{}
 	mi := &file_auth_v1_auth_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteResponse) String() string {
+func (x *DeleteUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteResponse) ProtoMessage() {}
+func (*DeleteUserResponse) ProtoMessage() {}
 
-func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
+func (x *DeleteUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_v1_auth_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -433,8 +433,8 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
-func (*DeleteResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteUserResponse.ProtoReflect.Descriptor instead.
+func (*DeleteUserResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{7}
 }
 
@@ -458,24 +458,26 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1b\n" +
 	"\tjwt_token\x18\x02 \x01(\tR\bjwtToken\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xa2\x01\n" +
-	"\rUpdateRequest\x12\x10\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xa6\x01\n" +
+	"\x11UpdateUserRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1f\n" +
 	"\busername\x18\x02 \x01(\tH\x00R\busername\x88\x01\x01\x12\x19\n" +
 	"\x05email\x18\x03 \x01(\tH\x01R\x05email\x88\x01\x01\x12\x1f\n" +
 	"\bpassword\x18\x04 \x01(\tH\x02R\bpassword\x88\x01\x01B\v\n" +
 	"\t_usernameB\b\n" +
 	"\x06_emailB\v\n" +
-	"\t_password\"\x10\n" +
-	"\x0eUpdateResponse\"!\n" +
-	"\rDeleteRequest\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\"\x10\n" +
-	"\x0eDeleteResponse2\xfc\x01\n" +
+	"\t_password\"\x14\n" +
+	"\x12UpdateUserResponse\"%\n" +
+	"\x11DeleteUserRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\"\x14\n" +
+	"\x12DeleteUserResponse2\x94\x02\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
-	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x129\n" +
-	"\x06Update\x12\x16.auth.v1.UpdateRequest\x1a\x17.auth.v1.UpdateResponse\x129\n" +
-	"\x06Delete\x12\x16.auth.v1.DeleteRequest\x1a\x17.auth.v1.DeleteResponseB*Z(github.com/dockloud/contract/gen/auth/v1b\x06proto3"
+	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12E\n" +
+	"\n" +
+	"UpdateUser\x12\x1a.auth.v1.UpdateUserRequest\x1a\x1b.auth.v1.UpdateUserResponse\x12E\n" +
+	"\n" +
+	"DeleteUser\x12\x1a.auth.v1.DeleteUserRequest\x1a\x1b.auth.v1.DeleteUserResponseB*Z(github.com/dockloud/contract/gen/auth/v1b\x06proto3"
 
 var (
 	file_auth_v1_auth_proto_rawDescOnce sync.Once
@@ -495,22 +497,22 @@ var file_auth_v1_auth_proto_goTypes = []any{
 	(*RegisterResponse)(nil),      // 1: auth.v1.RegisterResponse
 	(*LoginRequest)(nil),          // 2: auth.v1.LoginRequest
 	(*LoginResponse)(nil),         // 3: auth.v1.LoginResponse
-	(*UpdateRequest)(nil),         // 4: auth.v1.UpdateRequest
-	(*UpdateResponse)(nil),        // 5: auth.v1.UpdateResponse
-	(*DeleteRequest)(nil),         // 6: auth.v1.DeleteRequest
-	(*DeleteResponse)(nil),        // 7: auth.v1.DeleteResponse
+	(*UpdateUserRequest)(nil),     // 4: auth.v1.UpdateUserRequest
+	(*UpdateUserResponse)(nil),    // 5: auth.v1.UpdateUserResponse
+	(*DeleteUserRequest)(nil),     // 6: auth.v1.DeleteUserRequest
+	(*DeleteUserResponse)(nil),    // 7: auth.v1.DeleteUserResponse
 	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
 	8, // 0: auth.v1.LoginResponse.expires_at:type_name -> google.protobuf.Timestamp
 	0, // 1: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
 	2, // 2: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	4, // 3: auth.v1.AuthService.Update:input_type -> auth.v1.UpdateRequest
-	6, // 4: auth.v1.AuthService.Delete:input_type -> auth.v1.DeleteRequest
+	4, // 3: auth.v1.AuthService.UpdateUser:input_type -> auth.v1.UpdateUserRequest
+	6, // 4: auth.v1.AuthService.DeleteUser:input_type -> auth.v1.DeleteUserRequest
 	1, // 5: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
 	3, // 6: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
-	5, // 7: auth.v1.AuthService.Update:output_type -> auth.v1.UpdateResponse
-	7, // 8: auth.v1.AuthService.Delete:output_type -> auth.v1.DeleteResponse
+	5, // 7: auth.v1.AuthService.UpdateUser:output_type -> auth.v1.UpdateUserResponse
+	7, // 8: auth.v1.AuthService.DeleteUser:output_type -> auth.v1.DeleteUserResponse
 	5, // [5:9] is the sub-list for method output_type
 	1, // [1:5] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

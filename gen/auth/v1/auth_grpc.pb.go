@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_Register_FullMethodName = "/auth.v1.AuthService/Register"
-	AuthService_Login_FullMethodName    = "/auth.v1.AuthService/Login"
-	AuthService_Update_FullMethodName   = "/auth.v1.AuthService/Update"
-	AuthService_Delete_FullMethodName   = "/auth.v1.AuthService/Delete"
+	AuthService_Register_FullMethodName   = "/auth.v1.AuthService/Register"
+	AuthService_Login_FullMethodName      = "/auth.v1.AuthService/Login"
+	AuthService_UpdateUser_FullMethodName = "/auth.v1.AuthService/UpdateUser"
+	AuthService_DeleteUser_FullMethodName = "/auth.v1.AuthService/DeleteUser"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -31,8 +31,8 @@ const (
 type AuthServiceClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
-	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
+	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 }
 
 type authServiceClient struct {
@@ -63,20 +63,20 @@ func (c *authServiceClient) Login(ctx context.Context, in *LoginRequest, opts ..
 	return out, nil
 }
 
-func (c *authServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+func (c *authServiceClient) UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateResponse)
-	err := c.cc.Invoke(ctx, AuthService_Update_FullMethodName, in, out, cOpts...)
+	out := new(UpdateUserResponse)
+	err := c.cc.Invoke(ctx, AuthService_UpdateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *authServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, AuthService_Delete_FullMethodName, in, out, cOpts...)
+	out := new(DeleteUserResponse)
+	err := c.cc.Invoke(ctx, AuthService_DeleteUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,8 +89,8 @@ func (c *authServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts 
 type AuthServiceServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
-	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
-	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
+	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 }
 
 // UnimplementedAuthServiceServer should be embedded to have
@@ -106,11 +106,11 @@ func (UnimplementedAuthServiceServer) Register(context.Context, *RegisterRequest
 func (UnimplementedAuthServiceServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Update not implemented")
+func (UnimplementedAuthServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateUser not implemented")
 }
-func (UnimplementedAuthServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
+func (UnimplementedAuthServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteUser not implemented")
 }
 func (UnimplementedAuthServiceServer) testEmbeddedByValue() {}
 
@@ -168,38 +168,38 @@ func _AuthService_Login_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRequest)
+func _AuthService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).Update(ctx, in)
+		return srv.(AuthServiceServer).UpdateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_Update_FullMethodName,
+		FullMethod: AuthService_UpdateUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).Update(ctx, req.(*UpdateRequest))
+		return srv.(AuthServiceServer).UpdateUser(ctx, req.(*UpdateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRequest)
+func _AuthService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).Delete(ctx, in)
+		return srv.(AuthServiceServer).DeleteUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_Delete_FullMethodName,
+		FullMethod: AuthService_DeleteUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(AuthServiceServer).DeleteUser(ctx, req.(*DeleteUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -220,12 +220,12 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthService_Login_Handler,
 		},
 		{
-			MethodName: "Update",
-			Handler:    _AuthService_Update_Handler,
+			MethodName: "UpdateUser",
+			Handler:    _AuthService_UpdateUser_Handler,
 		},
 		{
-			MethodName: "Delete",
-			Handler:    _AuthService_Delete_Handler,
+			MethodName: "DeleteUser",
+			Handler:    _AuthService_DeleteUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

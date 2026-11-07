@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package document.v1;
+
+option go_package = "github.com/dockloud/contract/gen/document/v1";
+
+service DocumentService {
+  rpc GetDocumentsByAuthorID (GetDocumentsByAuthorIDRequest) returns (GetDocumentsByAuthorIDResponse);
+  rpc GetAccessibleDocuments (GetAccessibleDocumentsRequest) returns (GetAccessibleDocumentsResponse);
+  rpc GetDocumentByID (GetDocumentByIDRequest) returns (GetDocumentByIDResponse);
+  rpc CreateDocument (CreateDocumentRequest) returns (CreateDocumentResponse);
+  rpc UpdateDocument (UpdateDocumentRequest) returns (UpdateDocumentResponse);
+  rpc DeleteDocument (DeleteDocumentRequest) returns (DeleteDocumentResponse);
+
+  rpc GetUnsafeDocument (GetUnsafeDocumentRequest) returns (GetUnsafeDocumentResponse);
+  rpc UpdateUnsafeDocument (UpdateUnsafeDocumentRequest) returns (UpdateUnsafeDocumentResponse);
+  rpc DeleteUnsafeDocument (DeleteUnsafeDocumentRequest) returns (DeleteUnsafeDocumentResponse);
+}
+
+message GetDocumentsByAuthorIDRequest {
+  string author_uid = 1;
+  string requester_uid = 2;
+}
+
+message GetAccessibleDocumentsRequest {
+  string requester_uid = 1;
+}
+
+message GetDocumentByIDRequest {
+  int64 document_id = 1;
+  string requester_uid = 2;
+}
+
+message GetDocumentByIDResponse {
+  int64 document_id = 1;
+  string owner_uid = 2;
+  string name = 3;
+  string content = 4;
+  bool is_private = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp edited_at = 7;
+}
+
+message GetAccessibleDocumentsResponse {
+  repeated GetDocumentByIDResponse documents = 1;
+}
+
+message GetDocumentsByAuthorIDResponse {
+  repeated GetDocumentByIDResponse documents = 1;
+}
+
+
+message CreateDocumentRequest {
+  string requester_uid = 1;
+  string name = 2;
+  string content = 3;
+  bool is_private = 4;
+}
+
+message UpdateDocumentRequest {
+  int64 document_id = 1;
+  string requester_uid = 2;
+  optional string name = 3;
+  optional string content = 4;
+  optional bool is_private = 5;
+}
+
+message DeleteDocumentRequest {
+  int64 document_id = 1;
+  string requester_uid = 2;
+}
+
+message CreateDocumentResponse {
+  int64 document_id = 1;
+  optional string name = 2;
+  optional string content = 3;
+  optional bool is_private = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message UpdateDocumentResponse {
+  int64 document_id = 1;
+  optional string name = 2;
+  optional string content = 3;
+  optional bool is_private = 4;
+  google.protobuf.Timestamp edited_at = 5;
+}
+
+message DeleteDocumentResponse {
+  // empty
+}
+
+message GetUnsafeDocumentRequest {
+  int64 document_id = 1;
+}
+
+message UpdateUnsafeDocumentRequest {
+  int64 document_id = 1;
+  optional string name = 2;
+  optional string content = 3;
+  optional bool is_private = 4;
+}
+
+message DeleteUnsafeDocumentRequest {
+  int64 document_id = 1;
+}
+
+message GetUnsafeDocumentResponse {
+  int64 document_id = 1;
+  string owner_uid = 2;
+  string name = 3;
+  string content = 4;
+  bool is_private = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp edited_at = 7;
+}
+
+message UpdateUnsafeDocumentResponse {
+  int64 document_id = 1;
+  optional string name = 2;
+  optional string content = 3;
+  optional bool is_private = 4;
+  google.protobuf.Timestamp edited_at = 5;
+}
+
+message DeleteUnsafeDocumentResponse {
+  // empty
+}
