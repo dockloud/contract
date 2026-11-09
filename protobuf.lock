@@ -1,3 +1,7 @@
 # protobuf.lock - GENERATED FILE, DO NOT EDIT MANUALLY
 version: 1
-modules: []
+modules:
+    - source: github.com/googleapis/googleapis
+      version: bf54c1031efddde9cdfee0f89254315d0116a5f9
+      commit: bf54c1031efddde9cdfee0f89254315d0116a5f9
+      hash: h1:vab/6Urs3EqdrKHW5jVj13o97InayIKoEj3cEofkHwk=

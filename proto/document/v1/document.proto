@@ -1,18 +1,46 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
 package document.v1;
 
 option go_package = "github.com/dockloud/contract/gen/document/v1";
 
 service DocumentService {
-  rpc GetDocumentsByAuthorID (GetDocumentsByAuthorIDRequest) returns (GetDocumentsByAuthorIDResponse);
-  rpc GetAccessibleDocuments (GetAccessibleDocumentsRequest) returns (GetAccessibleDocumentsResponse);
-  rpc GetDocumentByID (GetDocumentByIDRequest) returns (GetDocumentByIDResponse);
-  rpc CreateDocument (CreateDocumentRequest) returns (CreateDocumentResponse);
-  rpc UpdateDocument (UpdateDocumentRequest) returns (UpdateDocumentResponse);
-  rpc DeleteDocument (DeleteDocumentRequest) returns (DeleteDocumentResponse);
+  rpc GetDocumentsByAuthorID (GetDocumentsByAuthorIDRequest) returns (GetDocumentsByAuthorIDResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/documents/get/by_author/{author_uid}"
+    };
+  }
+  rpc GetAccessibleDocuments (GetAccessibleDocumentsRequest) returns (GetAccessibleDocumentsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/documents/get"
+    };
+  }
+  rpc GetDocumentByID (GetDocumentByIDRequest) returns (GetDocumentByIDResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/documents/get/by_id/{document_id}"
+    };
+  }
+  rpc CreateDocument (CreateDocumentRequest) returns (CreateDocumentResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/document/create"
+      body: "*"
+    };
+  }
+  rpc UpdateDocument (UpdateDocumentRequest) returns (UpdateDocumentResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/document/update"
+      body: "*"
+    };
+  }
+  rpc DeleteDocument (DeleteDocumentRequest) returns (DeleteDocumentResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/document/delete"
+      body: "*"
+    };
+  }
 
   rpc GetUnsafeDocument (GetUnsafeDocumentRequest) returns (GetUnsafeDocumentResponse);
   rpc UpdateUnsafeDocument (UpdateUnsafeDocumentRequest) returns (UpdateUnsafeDocumentResponse);
@@ -21,16 +49,14 @@ service DocumentService {
 
 message GetDocumentsByAuthorIDRequest {
   string author_uid = 1;
-  string requester_uid = 2;
 }
 
 message GetAccessibleDocumentsRequest {
-  string requester_uid = 1;
+  // empty
 }
 
 message GetDocumentByIDRequest {
   int64 document_id = 1;
-  string requester_uid = 2;
 }
 
 message GetDocumentByIDResponse {
@@ -53,23 +79,20 @@ message GetDocumentsByAuthorIDResponse {
 
 
 message CreateDocumentRequest {
-  string requester_uid = 1;
-  string name = 2;
-  string content = 3;
-  bool is_private = 4;
+  string name = 1;
+  string content = 2;
+  bool is_private = 3;
 }
 
 message UpdateDocumentRequest {
   int64 document_id = 1;
-  string requester_uid = 2;
-  optional string name = 3;
-  optional string content = 4;
-  optional bool is_private = 5;
+  optional string name = 2;
+  optional string content = 3;
+  optional bool is_private = 4;
 }
 
 message DeleteDocumentRequest {
   int64 document_id = 1;
-  string requester_uid = 2;
 }
 
 message CreateDocumentResponse {
