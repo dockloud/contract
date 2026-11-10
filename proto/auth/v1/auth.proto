@@ -22,14 +22,13 @@ service AuthService {
   }
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {
     option (google.api.http) = {
-      post: "/api/v1/auth/update"
+      patch: "/api/v1/auth/user"
       body: "*"
     };
   }
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {
     option (google.api.http) = {
-      post: "/api/v1/auth/delete"
-      body: "*"
+      delete: "/api/v1/auth/user"
     };
   }
 }

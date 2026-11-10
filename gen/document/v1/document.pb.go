@@ -1159,14 +1159,14 @@ const file_document_v1_document_proto_rawDesc = "" +
 	"\n" +
 	"\b_contentB\r\n" +
 	"\v_is_private\"\x1e\n" +
-	"\x1cDeleteUnsafeDocumentResponse2\x9b\t\n" +
+	"\x1cDeleteUnsafeDocumentResponse2\xa1\t\n" +
 	"\x0fDocumentService\x12\xa7\x01\n" +
 	"\x16GetDocumentsByAuthorID\x12*.document.v1.GetDocumentsByAuthorIDRequest\x1a+.document.v1.GetDocumentsByAuthorIDResponse\"4\x82\xd3\xe4\x93\x02.\x12,/api/v1/documents/get/by_author/{author_uid}\x12\x90\x01\n" +
 	"\x16GetAccessibleDocuments\x12*.document.v1.GetAccessibleDocumentsRequest\x1a+.document.v1.GetAccessibleDocumentsResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/documents/get\x12\x8f\x01\n" +
-	"\x0fGetDocumentByID\x12#.document.v1.GetDocumentByIDRequest\x1a$.document.v1.GetDocumentByIDResponse\"1\x82\xd3\xe4\x93\x02+\x12)/api/v1/documents/get/by_id/{document_id}\x12}\n" +
-	"\x0eCreateDocument\x12\".document.v1.CreateDocumentRequest\x1a#.document.v1.CreateDocumentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/document/create\x12}\n" +
-	"\x0eUpdateDocument\x12\".document.v1.UpdateDocumentRequest\x1a#.document.v1.UpdateDocumentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/document/update\x12}\n" +
-	"\x0eDeleteDocument\x12\".document.v1.DeleteDocumentRequest\x1a#.document.v1.DeleteDocumentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/document/delete\x12b\n" +
+	"\x0fGetDocumentByID\x12#.document.v1.GetDocumentByIDRequest\x1a$.document.v1.GetDocumentByIDResponse\"1\x82\xd3\xe4\x93\x02+\x12)/api/v1/documents/get/by_id/{document_id}\x12v\n" +
+	"\x0eCreateDocument\x12\".document.v1.CreateDocumentRequest\x1a#.document.v1.CreateDocumentResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/document\x12\x84\x01\n" +
+	"\x0eUpdateDocument\x12\".document.v1.UpdateDocumentRequest\x1a#.document.v1.UpdateDocumentResponse\")\x82\xd3\xe4\x93\x02#:\x01*2\x1e/api/v1/document/{document_id}\x12\x81\x01\n" +
+	"\x0eDeleteDocument\x12\".document.v1.DeleteDocumentRequest\x1a#.document.v1.DeleteDocumentResponse\"&\x82\xd3\xe4\x93\x02 *\x1e/api/v1/document/{document_id}\x12b\n" +
 	"\x11GetUnsafeDocument\x12%.document.v1.GetUnsafeDocumentRequest\x1a&.document.v1.GetUnsafeDocumentResponse\x12k\n" +
 	"\x14UpdateUnsafeDocument\x12(.document.v1.UpdateUnsafeDocumentRequest\x1a).document.v1.UpdateUnsafeDocumentResponse\x12k\n" +
 	"\x14DeleteUnsafeDocument\x12(.document.v1.DeleteUnsafeDocumentRequest\x1a).document.v1.DeleteUnsafeDocumentResponseB.Z,github.com/dockloud/contract/gen/document/v1b\x06proto3"

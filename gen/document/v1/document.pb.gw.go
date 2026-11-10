@@ -165,9 +165,18 @@ func request_DocumentService_UpdateDocument_0(ctx context.Context, marshaler run
 	var (
 		protoReq UpdateDocumentRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["document_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "document_id")
+	}
+	protoReq.DocumentId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "document_id", err)
 	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
@@ -180,9 +189,18 @@ func local_request_DocumentService_UpdateDocument_0(ctx context.Context, marshal
 	var (
 		protoReq UpdateDocumentRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["document_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "document_id")
+	}
+	protoReq.DocumentId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "document_id", err)
 	}
 	msg, err := server.UpdateDocument(ctx, &protoReq)
 	return msg, metadata, err
@@ -192,9 +210,15 @@ func request_DocumentService_DeleteDocument_0(ctx context.Context, marshaler run
 	var (
 		protoReq DeleteDocumentRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	val, ok := pathParams["document_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "document_id")
+	}
+	protoReq.DocumentId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "document_id", err)
 	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
@@ -207,9 +231,15 @@ func local_request_DocumentService_DeleteDocument_0(ctx context.Context, marshal
 	var (
 		protoReq DeleteDocumentRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	val, ok := pathParams["document_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "document_id")
+	}
+	protoReq.DocumentId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "document_id", err)
 	}
 	msg, err := server.DeleteDocument(ctx, &protoReq)
 	return msg, metadata, err
@@ -287,7 +317,7 @@ func RegisterDocumentServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/CreateDocument", runtime.WithHTTPPathPattern("/api/v1/document/create"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/CreateDocument", runtime.WithHTTPPathPattern("/api/v1/document"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -301,13 +331,13 @@ func RegisterDocumentServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		}
 		forward_DocumentService_CreateDocument_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_DocumentService_UpdateDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_DocumentService_UpdateDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/UpdateDocument", runtime.WithHTTPPathPattern("/api/v1/document/update"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/UpdateDocument", runtime.WithHTTPPathPattern("/api/v1/document/{document_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -321,13 +351,13 @@ func RegisterDocumentServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		}
 		forward_DocumentService_UpdateDocument_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_DocumentService_DeleteDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_DocumentService_DeleteDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/DeleteDocument", runtime.WithHTTPPathPattern("/api/v1/document/delete"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/DeleteDocument", runtime.WithHTTPPathPattern("/api/v1/document/{document_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -436,7 +466,7 @@ func RegisterDocumentServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/CreateDocument", runtime.WithHTTPPathPattern("/api/v1/document/create"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/CreateDocument", runtime.WithHTTPPathPattern("/api/v1/document"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -449,11 +479,11 @@ func RegisterDocumentServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		}
 		forward_DocumentService_CreateDocument_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_DocumentService_UpdateDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_DocumentService_UpdateDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/UpdateDocument", runtime.WithHTTPPathPattern("/api/v1/document/update"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/UpdateDocument", runtime.WithHTTPPathPattern("/api/v1/document/{document_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -466,11 +496,11 @@ func RegisterDocumentServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		}
 		forward_DocumentService_UpdateDocument_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_DocumentService_DeleteDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_DocumentService_DeleteDocument_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/DeleteDocument", runtime.WithHTTPPathPattern("/api/v1/document/delete"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/DeleteDocument", runtime.WithHTTPPathPattern("/api/v1/document/{document_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -490,9 +520,9 @@ var (
 	pattern_DocumentService_GetDocumentsByAuthorID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "documents", "get", "by_author", "author_uid"}, ""))
 	pattern_DocumentService_GetAccessibleDocuments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "documents", "get"}, ""))
 	pattern_DocumentService_GetDocumentByID_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "documents", "get", "by_id", "document_id"}, ""))
-	pattern_DocumentService_CreateDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "document", "create"}, ""))
-	pattern_DocumentService_UpdateDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "document", "update"}, ""))
-	pattern_DocumentService_DeleteDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "document", "delete"}, ""))
+	pattern_DocumentService_CreateDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "document"}, ""))
+	pattern_DocumentService_UpdateDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "document", "document_id"}, ""))
+	pattern_DocumentService_DeleteDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "document", "document_id"}, ""))
 )
 
 var (

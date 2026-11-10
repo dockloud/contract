@@ -25,20 +25,19 @@ service DocumentService {
   }
   rpc CreateDocument (CreateDocumentRequest) returns (CreateDocumentResponse) {
     option (google.api.http) = {
-      post: "/api/v1/document/create"
+      post: "/api/v1/document"
       body: "*"
     };
   }
   rpc UpdateDocument (UpdateDocumentRequest) returns (UpdateDocumentResponse) {
     option (google.api.http) = {
-      post: "/api/v1/document/update"
+      patch: "/api/v1/document/{document_id}"
       body: "*"
     };
   }
   rpc DeleteDocument (DeleteDocumentRequest) returns (DeleteDocumentResponse) {
     option (google.api.http) = {
-      post: "/api/v1/document/delete"
-      body: "*"
+      delete: "/api/v1/document/{document_id}"
     };
   }
 
