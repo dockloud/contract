@@ -202,7 +202,7 @@ type CreateLinkRequest struct {
 	ReadAllowed   bool                   `protobuf:"varint,3,opt,name=read_allowed,json=readAllowed,proto3" json:"read_allowed,omitempty"`
 	WriteAllowed  bool                   `protobuf:"varint,4,opt,name=write_allowed,json=writeAllowed,proto3" json:"write_allowed,omitempty"`
 	DeleteAllowed bool                   `protobuf:"varint,5,opt,name=delete_allowed,json=deleteAllowed,proto3" json:"delete_allowed,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=expires_at,json=expiresAt,proto3,oneof" json:"expires_at,omitempty"`
+	HoursToExpire *int64                 `protobuf:"varint,6,opt,name=hours_to_expire,json=hoursToExpire,proto3,oneof" json:"hours_to_expire,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -272,11 +272,11 @@ func (x *CreateLinkRequest) GetDeleteAllowed() bool {
 	return false
 }
 
-func (x *CreateLinkRequest) GetExpiresAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.ExpiresAt
+func (x *CreateLinkRequest) GetHoursToExpire() int64 {
+	if x != nil && x.HoursToExpire != nil {
+		return *x.HoursToExpire
 	}
-	return nil
+	return 0
 }
 
 type CreateLinkResponse struct {
@@ -782,17 +782,16 @@ const file_link_v1_link_proto_rawDesc = "" +
 	"\v_expires_at\"\x11\n" +
 	"\x0fGetLinksRequest\"7\n" +
 	"\x10GetLinksResponse\x12#\n" +
-	"\x05links\x18\x01 \x03(\v2\r.link.v1.LinkR\x05links\"\x8d\x02\n" +
+	"\x05links\x18\x01 \x03(\v2\r.link.v1.LinkR\x05links\"\xff\x01\n" +
 	"\x11CreateLinkRequest\x12\x1f\n" +
 	"\vdocument_id\x18\x01 \x01(\x03R\n" +
 	"documentId\x12\x19\n" +
 	"\buser_uid\x18\x02 \x01(\tR\auserUid\x12!\n" +
 	"\fread_allowed\x18\x03 \x01(\bR\vreadAllowed\x12#\n" +
 	"\rwrite_allowed\x18\x04 \x01(\bR\fwriteAllowed\x12%\n" +
-	"\x0edelete_allowed\x18\x05 \x01(\bR\rdeleteAllowed\x12>\n" +
-	"\n" +
-	"expires_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\texpiresAt\x88\x01\x01B\r\n" +
-	"\v_expires_at\"7\n" +
+	"\x0edelete_allowed\x18\x05 \x01(\bR\rdeleteAllowed\x12+\n" +
+	"\x0fhours_to_expire\x18\x06 \x01(\x03H\x00R\rhoursToExpire\x88\x01\x01B\x12\n" +
+	"\x10_hours_to_expire\"7\n" +
 	"\x12CreateLinkResponse\x12!\n" +
 	"\x04link\x18\x01 \x01(\v2\r.link.v1.LinkR\x04link\")\n" +
 	"\x11RevokeLinkRequest\x12\x14\n" +
@@ -879,28 +878,27 @@ var file_link_v1_link_proto_depIdxs = []int32{
 	13, // 0: link.v1.Link.created_at:type_name -> google.protobuf.Timestamp
 	13, // 1: link.v1.Link.expires_at:type_name -> google.protobuf.Timestamp
 	0,  // 2: link.v1.GetLinksResponse.links:type_name -> link.v1.Link
-	13, // 3: link.v1.CreateLinkRequest.expires_at:type_name -> google.protobuf.Timestamp
-	0,  // 4: link.v1.CreateLinkResponse.link:type_name -> link.v1.Link
-	13, // 5: link.v1.GetDocumentByLinkResponse.created_at:type_name -> google.protobuf.Timestamp
-	13, // 6: link.v1.GetDocumentByLinkResponse.edited_at:type_name -> google.protobuf.Timestamp
-	13, // 7: link.v1.UpdateDocumentByLinkResponse.edited_at:type_name -> google.protobuf.Timestamp
-	1,  // 8: link.v1.LinkService.GetLinks:input_type -> link.v1.GetLinksRequest
-	3,  // 9: link.v1.LinkService.CreateLink:input_type -> link.v1.CreateLinkRequest
-	5,  // 10: link.v1.LinkService.RevokeLink:input_type -> link.v1.RevokeLinkRequest
-	7,  // 11: link.v1.LinkService.GetDocumentByLink:input_type -> link.v1.GetDocumentByLinkRequest
-	9,  // 12: link.v1.LinkService.UpdateDocumentByLink:input_type -> link.v1.UpdateDocumentByLinkRequest
-	11, // 13: link.v1.LinkService.DeleteDocumentByLink:input_type -> link.v1.DeleteDocumentByLinkRequest
-	2,  // 14: link.v1.LinkService.GetLinks:output_type -> link.v1.GetLinksResponse
-	4,  // 15: link.v1.LinkService.CreateLink:output_type -> link.v1.CreateLinkResponse
-	6,  // 16: link.v1.LinkService.RevokeLink:output_type -> link.v1.RevokeLinkResponse
-	8,  // 17: link.v1.LinkService.GetDocumentByLink:output_type -> link.v1.GetDocumentByLinkResponse
-	10, // 18: link.v1.LinkService.UpdateDocumentByLink:output_type -> link.v1.UpdateDocumentByLinkResponse
-	12, // 19: link.v1.LinkService.DeleteDocumentByLink:output_type -> link.v1.DeleteDocumentByLinkResponse
-	14, // [14:20] is the sub-list for method output_type
-	8,  // [8:14] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	0,  // 3: link.v1.CreateLinkResponse.link:type_name -> link.v1.Link
+	13, // 4: link.v1.GetDocumentByLinkResponse.created_at:type_name -> google.protobuf.Timestamp
+	13, // 5: link.v1.GetDocumentByLinkResponse.edited_at:type_name -> google.protobuf.Timestamp
+	13, // 6: link.v1.UpdateDocumentByLinkResponse.edited_at:type_name -> google.protobuf.Timestamp
+	1,  // 7: link.v1.LinkService.GetLinks:input_type -> link.v1.GetLinksRequest
+	3,  // 8: link.v1.LinkService.CreateLink:input_type -> link.v1.CreateLinkRequest
+	5,  // 9: link.v1.LinkService.RevokeLink:input_type -> link.v1.RevokeLinkRequest
+	7,  // 10: link.v1.LinkService.GetDocumentByLink:input_type -> link.v1.GetDocumentByLinkRequest
+	9,  // 11: link.v1.LinkService.UpdateDocumentByLink:input_type -> link.v1.UpdateDocumentByLinkRequest
+	11, // 12: link.v1.LinkService.DeleteDocumentByLink:input_type -> link.v1.DeleteDocumentByLinkRequest
+	2,  // 13: link.v1.LinkService.GetLinks:output_type -> link.v1.GetLinksResponse
+	4,  // 14: link.v1.LinkService.CreateLink:output_type -> link.v1.CreateLinkResponse
+	6,  // 15: link.v1.LinkService.RevokeLink:output_type -> link.v1.RevokeLinkResponse
+	8,  // 16: link.v1.LinkService.GetDocumentByLink:output_type -> link.v1.GetDocumentByLinkResponse
+	10, // 17: link.v1.LinkService.UpdateDocumentByLink:output_type -> link.v1.UpdateDocumentByLinkResponse
+	12, // 18: link.v1.LinkService.DeleteDocumentByLink:output_type -> link.v1.DeleteDocumentByLinkResponse
+	13, // [13:19] is the sub-list for method output_type
+	7,  // [7:13] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_link_v1_link_proto_init() }

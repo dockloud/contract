@@ -65,7 +65,7 @@ message CreateLinkRequest {
   bool read_allowed = 3;
   bool write_allowed = 4;
   bool delete_allowed = 5;
-  optional google.protobuf.Timestamp expires_at = 6;
+  optional int64 hours_to_expire = 6;
 }
 
 message CreateLinkResponse {
