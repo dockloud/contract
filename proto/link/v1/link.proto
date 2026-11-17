@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+package link.v1;
+option go_package = "github.com/dockloud/contract/gen/link/v1";
+
+service LinkService {
+  rpc GetLinks (GetLinksRequest) returns (GetLinksResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/link"
+    };
+  }
+  rpc CreateLink (CreateLinkRequest) returns (CreateLinkResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/link"
+      body: "*"
+    };
+  }
+  rpc RevokeLink (RevokeLinkRequest) returns (RevokeLinkResponse) {
+    option (google.api.http) = {
+      delete: "/api/v1/link/{token}"
+    };
+  }
+  rpc GetDocumentByLink (GetDocumentByLinkRequest) returns (GetDocumentByLinkResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/link/document/{token}"
+    };
+  }
+  rpc UpdateDocumentByLink (UpdateDocumentByLinkRequest) returns (UpdateDocumentByLinkResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/link/document/{token}"
+      body: "*"
+    };
+  }
+  rpc DeleteDocumentByLink (DeleteDocumentByLinkRequest) returns (DeleteDocumentByLinkResponse) {
+    option (google.api.http) = {
+      delete: "/api/v1/link/document/{token}"
+    };
+  }
+}
+
+message Link {
+  string token = 1;
+  int64 document_id = 2;
+  bool read_allowed = 3;
+  bool write_allowed = 4;
+  bool delete_allowed = 5;
+  google.protobuf.Timestamp created_at = 6;
+  optional google.protobuf.Timestamp expires_at = 7;
+}
+
+message GetLinksRequest {
+  // empty
+}
+
+message GetLinksResponse {
+  repeated Link links = 1;
+}
+
+message CreateLinkRequest {
+  int64 document_id = 1;
+  string user_uid = 2;
+  bool read_allowed = 3;
+  bool write_allowed = 4;
+  bool delete_allowed = 5;
+  optional google.protobuf.Timestamp expires_at = 6;
+}
+
+message CreateLinkResponse {
+  Link link = 1;
+}
+
+message RevokeLinkRequest {
+  string token = 1;
+}
+
+message RevokeLinkResponse {
+  // empty
+}
+
+message GetDocumentByLinkRequest {
+  string token = 1;
+}
+
+message GetDocumentByLinkResponse {
+  int64 document_id = 1;
+  string owner_uid = 2;
+  string name = 3;
+  string content = 4;
+  bool is_private = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp edited_at = 7;
+}
+
+message UpdateDocumentByLinkRequest {
+  string token = 1;
+  optional string name = 2;
+  optional string content = 3;
+  optional bool is_private = 4;
+}
+
+message UpdateDocumentByLinkResponse {
+  int64 document_id = 1;
+  optional string name = 2;
+  optional string content = 3;
+  optional bool is_private = 4;
+  google.protobuf.Timestamp edited_at = 5;
+}
+
+message DeleteDocumentByLinkRequest {
+  string token = 1;
+}
+
+message DeleteDocumentByLinkResponse {
+  // empty
+}
