@@ -257,7 +257,7 @@ func RegisterDocumentServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentsByAuthorID", runtime.WithHTTPPathPattern("/api/v1/documents/get/by_author/{author_uid}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentsByAuthorID", runtime.WithHTTPPathPattern("/api/v1/document/by_author/{author_uid}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -277,7 +277,7 @@ func RegisterDocumentServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/GetAccessibleDocuments", runtime.WithHTTPPathPattern("/api/v1/documents/get"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/GetAccessibleDocuments", runtime.WithHTTPPathPattern("/api/v1/document"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -297,7 +297,7 @@ func RegisterDocumentServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentByID", runtime.WithHTTPPathPattern("/api/v1/documents/get/by_id/{document_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentByID", runtime.WithHTTPPathPattern("/api/v1/document/by_id/{document_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -415,7 +415,7 @@ func RegisterDocumentServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentsByAuthorID", runtime.WithHTTPPathPattern("/api/v1/documents/get/by_author/{author_uid}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentsByAuthorID", runtime.WithHTTPPathPattern("/api/v1/document/by_author/{author_uid}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -432,7 +432,7 @@ func RegisterDocumentServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/GetAccessibleDocuments", runtime.WithHTTPPathPattern("/api/v1/documents/get"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/GetAccessibleDocuments", runtime.WithHTTPPathPattern("/api/v1/document"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -449,7 +449,7 @@ func RegisterDocumentServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentByID", runtime.WithHTTPPathPattern("/api/v1/documents/get/by_id/{document_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/document.v1.DocumentService/GetDocumentByID", runtime.WithHTTPPathPattern("/api/v1/document/by_id/{document_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -517,9 +517,9 @@ func RegisterDocumentServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_DocumentService_GetDocumentsByAuthorID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "documents", "get", "by_author", "author_uid"}, ""))
-	pattern_DocumentService_GetAccessibleDocuments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "documents", "get"}, ""))
-	pattern_DocumentService_GetDocumentByID_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "documents", "get", "by_id", "document_id"}, ""))
+	pattern_DocumentService_GetDocumentsByAuthorID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "document", "by_author", "author_uid"}, ""))
+	pattern_DocumentService_GetAccessibleDocuments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "document"}, ""))
+	pattern_DocumentService_GetDocumentByID_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "document", "by_id", "document_id"}, ""))
 	pattern_DocumentService_CreateDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "document"}, ""))
 	pattern_DocumentService_UpdateDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "document", "document_id"}, ""))
 	pattern_DocumentService_DeleteDocument_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "document", "document_id"}, ""))

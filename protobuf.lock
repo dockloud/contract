@@ -2,6 +2,19 @@
 version: 1
 modules:
     - source: github.com/googleapis/googleapis
-      version: bf54c1031efddde9cdfee0f89254315d0116a5f9
-      commit: bf54c1031efddde9cdfee0f89254315d0116a5f9
-      hash: h1:vab/6Urs3EqdrKHW5jVj13o97InayIKoEj3cEofkHwk=
+      version: 03a91044136a014466d4293eb1fe91f2b02075d2
+      commit: 03a91044136a014466d4293eb1fe91f2b02075d2
+      hash: h1:/Ed9Esm4OG/Kf9lkCOuwDdkRD14k1vMIF1x0ynPE7YY=
+    - source: github.com/grpc-ecosystem/grpc-gateway
+      version: 688d5fe75c26c0a80d1d98cd36d9d09a3eda1be7
+      commit: 688d5fe75c26c0a80d1d98cd36d9d09a3eda1be7
+      hash: h1:lvI5v1F0hhu1DSO3LbfjBknwqBg0zRpgmGE/jXkdSdg=
+      bsr:
+        - dependency:
+            module: buf.build/googleapis/googleapis
+            commit: 62f35d8aed1149c291d606d958a7ce32
+            config: buf.yaml
+          git:
+            module: github.com/googleapis/googleapis
+            version: 03a91044136a014466d4293eb1fe91f2b02075d2
+          resolution: compatibility_snapshot

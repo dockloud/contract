@@ -16,3 +16,9 @@ plugins:
     out: ./gen
     opts:
       paths: source_relative
+
+  - name: openapiv2
+    out: ./gen/openapi
+    opts:
+      allow_merge: true
+      merge_file_name: api

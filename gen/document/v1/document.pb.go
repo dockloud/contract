@@ -1159,11 +1159,11 @@ const file_document_v1_document_proto_rawDesc = "" +
 	"\n" +
 	"\b_contentB\r\n" +
 	"\v_is_private\"\x1e\n" +
-	"\x1cDeleteUnsafeDocumentResponse2\xa1\t\n" +
-	"\x0fDocumentService\x12\xa7\x01\n" +
-	"\x16GetDocumentsByAuthorID\x12*.document.v1.GetDocumentsByAuthorIDRequest\x1a+.document.v1.GetDocumentsByAuthorIDResponse\"4\x82\xd3\xe4\x93\x02.\x12,/api/v1/documents/get/by_author/{author_uid}\x12\x90\x01\n" +
-	"\x16GetAccessibleDocuments\x12*.document.v1.GetAccessibleDocumentsRequest\x1a+.document.v1.GetAccessibleDocumentsResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/documents/get\x12\x8f\x01\n" +
-	"\x0fGetDocumentByID\x12#.document.v1.GetDocumentByIDRequest\x1a$.document.v1.GetDocumentByIDResponse\"1\x82\xd3\xe4\x93\x02+\x12)/api/v1/documents/get/by_id/{document_id}\x12v\n" +
+	"\x1cDeleteUnsafeDocumentResponse2\x92\t\n" +
+	"\x0fDocumentService\x12\xa2\x01\n" +
+	"\x16GetDocumentsByAuthorID\x12*.document.v1.GetDocumentsByAuthorIDRequest\x1a+.document.v1.GetDocumentsByAuthorIDResponse\"/\x82\xd3\xe4\x93\x02)\x12'/api/v1/document/by_author/{author_uid}\x12\x8b\x01\n" +
+	"\x16GetAccessibleDocuments\x12*.document.v1.GetAccessibleDocumentsRequest\x1a+.document.v1.GetAccessibleDocumentsResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/document\x12\x8a\x01\n" +
+	"\x0fGetDocumentByID\x12#.document.v1.GetDocumentByIDRequest\x1a$.document.v1.GetDocumentByIDResponse\",\x82\xd3\xe4\x93\x02&\x12$/api/v1/document/by_id/{document_id}\x12v\n" +
 	"\x0eCreateDocument\x12\".document.v1.CreateDocumentRequest\x1a#.document.v1.CreateDocumentResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/document\x12\x84\x01\n" +
 	"\x0eUpdateDocument\x12\".document.v1.UpdateDocumentRequest\x1a#.document.v1.UpdateDocumentResponse\")\x82\xd3\xe4\x93\x02#:\x01*2\x1e/api/v1/document/{document_id}\x12\x81\x01\n" +
 	"\x0eDeleteDocument\x12\".document.v1.DeleteDocumentRequest\x1a#.document.v1.DeleteDocumentResponse\"&\x82\xd3\xe4\x93\x02 *\x1e/api/v1/document/{document_id}\x12b\n" +

@@ -10,17 +10,17 @@ option go_package = "github.com/dockloud/contract/gen/document/v1";
 service DocumentService {
   rpc GetDocumentsByAuthorID (GetDocumentsByAuthorIDRequest) returns (GetDocumentsByAuthorIDResponse) {
     option (google.api.http) = {
-      get: "/api/v1/documents/get/by_author/{author_uid}"
+      get: "/api/v1/document/by_author/{author_uid}"
     };
   }
   rpc GetAccessibleDocuments (GetAccessibleDocumentsRequest) returns (GetAccessibleDocumentsResponse) {
     option (google.api.http) = {
-      get: "/api/v1/documents/get"
+      get: "/api/v1/document"
     };
   }
   rpc GetDocumentByID (GetDocumentByIDRequest) returns (GetDocumentByIDResponse) {
     option (google.api.http) = {
-      get: "/api/v1/documents/get/by_id/{document_id}"
+      get: "/api/v1/document/by_id/{document_id}"
     };
   }
   rpc CreateDocument (CreateDocumentRequest) returns (CreateDocumentResponse) {
