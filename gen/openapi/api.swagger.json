@@ -597,9 +597,6 @@
           "type": "string",
           "format": "int64"
         },
-        "userUid": {
-          "type": "string"
-        },
         "readAllowed": {
           "type": "boolean"
         },

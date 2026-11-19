@@ -61,11 +61,10 @@ message GetLinksResponse {
 
 message CreateLinkRequest {
   int64 document_id = 1;
-  string user_uid = 2;
-  bool read_allowed = 3;
-  bool write_allowed = 4;
-  bool delete_allowed = 5;
-  optional int64 hours_to_expire = 6;
+  bool read_allowed = 2;
+  bool write_allowed = 3;
+  bool delete_allowed = 4;
+  optional int64 hours_to_expire = 5;
 }
 
 message CreateLinkResponse {

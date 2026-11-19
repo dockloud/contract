@@ -198,11 +198,10 @@ func (x *GetLinksResponse) GetLinks() []*Link {
 type CreateLinkRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DocumentId    int64                  `protobuf:"varint,1,opt,name=document_id,json=documentId,proto3" json:"document_id,omitempty"`
-	UserUid       string                 `protobuf:"bytes,2,opt,name=user_uid,json=userUid,proto3" json:"user_uid,omitempty"`
-	ReadAllowed   bool                   `protobuf:"varint,3,opt,name=read_allowed,json=readAllowed,proto3" json:"read_allowed,omitempty"`
-	WriteAllowed  bool                   `protobuf:"varint,4,opt,name=write_allowed,json=writeAllowed,proto3" json:"write_allowed,omitempty"`
-	DeleteAllowed bool                   `protobuf:"varint,5,opt,name=delete_allowed,json=deleteAllowed,proto3" json:"delete_allowed,omitempty"`
-	HoursToExpire *int64                 `protobuf:"varint,6,opt,name=hours_to_expire,json=hoursToExpire,proto3,oneof" json:"hours_to_expire,omitempty"`
+	ReadAllowed   bool                   `protobuf:"varint,2,opt,name=read_allowed,json=readAllowed,proto3" json:"read_allowed,omitempty"`
+	WriteAllowed  bool                   `protobuf:"varint,3,opt,name=write_allowed,json=writeAllowed,proto3" json:"write_allowed,omitempty"`
+	DeleteAllowed bool                   `protobuf:"varint,4,opt,name=delete_allowed,json=deleteAllowed,proto3" json:"delete_allowed,omitempty"`
+	HoursToExpire *int64                 `protobuf:"varint,5,opt,name=hours_to_expire,json=hoursToExpire,proto3,oneof" json:"hours_to_expire,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -242,13 +241,6 @@ func (x *CreateLinkRequest) GetDocumentId() int64 {
 		return x.DocumentId
 	}
 	return 0
-}
-
-func (x *CreateLinkRequest) GetUserUid() string {
-	if x != nil {
-		return x.UserUid
-	}
-	return ""
 }
 
 func (x *CreateLinkRequest) GetReadAllowed() bool {
@@ -782,15 +774,14 @@ const file_link_v1_link_proto_rawDesc = "" +
 	"\v_expires_at\"\x11\n" +
 	"\x0fGetLinksRequest\"7\n" +
 	"\x10GetLinksResponse\x12#\n" +
-	"\x05links\x18\x01 \x03(\v2\r.link.v1.LinkR\x05links\"\xff\x01\n" +
+	"\x05links\x18\x01 \x03(\v2\r.link.v1.LinkR\x05links\"\xe4\x01\n" +
 	"\x11CreateLinkRequest\x12\x1f\n" +
 	"\vdocument_id\x18\x01 \x01(\x03R\n" +
-	"documentId\x12\x19\n" +
-	"\buser_uid\x18\x02 \x01(\tR\auserUid\x12!\n" +
-	"\fread_allowed\x18\x03 \x01(\bR\vreadAllowed\x12#\n" +
-	"\rwrite_allowed\x18\x04 \x01(\bR\fwriteAllowed\x12%\n" +
-	"\x0edelete_allowed\x18\x05 \x01(\bR\rdeleteAllowed\x12+\n" +
-	"\x0fhours_to_expire\x18\x06 \x01(\x03H\x00R\rhoursToExpire\x88\x01\x01B\x12\n" +
+	"documentId\x12!\n" +
+	"\fread_allowed\x18\x02 \x01(\bR\vreadAllowed\x12#\n" +
+	"\rwrite_allowed\x18\x03 \x01(\bR\fwriteAllowed\x12%\n" +
+	"\x0edelete_allowed\x18\x04 \x01(\bR\rdeleteAllowed\x12+\n" +
+	"\x0fhours_to_expire\x18\x05 \x01(\x03H\x00R\rhoursToExpire\x88\x01\x01B\x12\n" +
 	"\x10_hours_to_expire\"7\n" +
 	"\x12CreateLinkResponse\x12!\n" +
 	"\x04link\x18\x01 \x01(\v2\r.link.v1.LinkR\x04link\")\n" +
